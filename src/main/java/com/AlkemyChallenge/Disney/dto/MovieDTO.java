@@ -23,8 +23,7 @@ public class MovieDTO {
 
     private GenderEntity gender;
 
-    private Long genderId;
-
+  
     private List<CharacterEntity> characters = new ArrayList<>();
 
     private boolean deleted ;
