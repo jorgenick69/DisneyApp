@@ -13,9 +13,9 @@ import org.hibernate.annotations.Where;
 
 
 @Entity
-@Table(name = "gender")
+@Table(name = "genders")
 @Data
-@SQLDelete(sql = "UPDATE gender SET deleted = true WHERE id =?")
+@SQLDelete(sql = "UPDATE genders SET deleted = true WHERE id =?")
 @Where(clause = "deleted = false")
 public class GenderEntity {
    

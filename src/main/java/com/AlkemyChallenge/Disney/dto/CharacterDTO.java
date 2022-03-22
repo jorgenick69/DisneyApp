@@ -1,10 +1,10 @@
 package com.AlkemyChallenge.Disney.dto;
 
+
 import com.AlkemyChallenge.Disney.entity.MovieEntity;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
-
 
 @Data
 public class CharacterDTO {
@@ -19,11 +19,12 @@ public class CharacterDTO {
 
     private double weight;
 
-    private String history ;
+    private String history;
 
     private List<MovieEntity> movies = new ArrayList<>();
+    
+    private List<Long> moviesId = new ArrayList<>();
 
-     private boolean deleted;
+    private boolean deleted;
 
-   
 }

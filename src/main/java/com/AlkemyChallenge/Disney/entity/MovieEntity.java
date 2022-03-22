@@ -22,9 +22,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
-@Table(name = "movie")
+@Table(name = "movies")
 @Data
-@SQLDelete(sql = "UPDATE movie SET deleted = true WHERE id =?")
+@SQLDelete(sql = "UPDATE movies SET deleted = true WHERE id =?")
 @Where(clause = "deleted = false")
 
 public class MovieEntity {
@@ -47,10 +47,10 @@ public class MovieEntity {
     @JoinColumn(name = "gender" , insertable = false, updatable = false)
     private GenderEntity gender;
 
-  // @Column(name = "genderId", nullable = false )
-   // private Long genderId;
+  //@Column(name = "genderId", nullable = false )
+ //  private Long genderId;
 
-    @ManyToMany(
+   @ManyToMany(
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
@@ -62,7 +62,7 @@ public class MovieEntity {
             inverseJoinColumns = @JoinColumn(name = "characterId")
 
     )
-    private List<CharacterEntity> characters = new ArrayList<>();
+    private List<CharacterEntity> characters_entity = new ArrayList<>();
   
 
      private boolean deleted=Boolean.FALSE;

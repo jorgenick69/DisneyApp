@@ -35,10 +35,10 @@ public class CharacterEntity {
 
     private String history ;
 
-    @ManyToMany(mappedBy = "characters", cascade = CascadeType.ALL)
+   @ManyToMany(mappedBy = "characters_entity", cascade = CascadeType.ALL)
     private List<MovieEntity> movies = new ArrayList<>();
 
-      private boolean deleted=Boolean.FALSE;
+    private boolean deleted=Boolean.FALSE;
 
  
     

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,10 +24,21 @@ public class CharacterController {
     @Autowired
     private CharacterService characterService;
    
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity<List<CharacterDTOBasic>> getAll(){
-    List<CharacterDTOBasic>CharacterDtoBasicList=characterService.getAllCharacterBasic();
+    List<CharacterDTOBasic>CharacterDtoBasicList=characterService.getAllCharacterDtoBasic();
     return ResponseEntity.ok().body(CharacterDtoBasicList);
+    }
+    
+    
+    @GetMapping
+    public ResponseEntity<List<CharacterDTOBasic>> getAllbyFilter(
+    @RequestParam(required = false)String name,
+    @RequestParam(required = false)Integer age,
+    @RequestParam(required = false)List<Long> idMovie
+    ){
+    List<CharacterDTOBasic>CharacterDtoBasicList=characterService.getByFilters(name,age,idMovie);
+    return ResponseEntity.ok(CharacterDtoBasicList);
     }
     
     @PostMapping
@@ -34,7 +46,8 @@ public class CharacterController {
     CharacterDTO characterSave=characterService.save(character);
     return ResponseEntity.status(HttpStatus.CREATED).body(characterSave);
     }
-    @DeleteMapping("/id")
+    
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void>delete(@PathVariable Long id){
     characterService.delete(id);
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

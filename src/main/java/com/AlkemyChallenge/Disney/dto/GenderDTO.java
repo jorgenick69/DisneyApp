@@ -1,13 +1,12 @@
 package com.AlkemyChallenge.Disney.dto;
 
-import com.AlkemyChallenge.Disney.entity.MovieEntity;
+
 import java.util.List;
 import lombok.Data;
 
-
 @Data
 public class GenderDTO {
- 
+
     private Long id;
 
     private String name;
@@ -16,6 +15,8 @@ public class GenderDTO {
 
     private boolean deleted;
 
-   private List<MovieEntity>movies;
-   
+    private List<MovieDTO> movies;
+
+    private List<Long> moviesId;
+
 }
