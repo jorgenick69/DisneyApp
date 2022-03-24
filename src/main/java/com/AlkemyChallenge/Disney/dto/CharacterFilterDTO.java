@@ -15,9 +15,9 @@ import lombok.Data;
 public class CharacterFilterDTO {
  private  String name;
  private  Integer age;
- private List<Long>idMovie;
+ private Long idMovie;
 
-    public CharacterFilterDTO(String name, Integer age, List<Long> idMovie) {
+    public CharacterFilterDTO(String name, Integer age, Long idMovie) {
         this.name = name;
         this.age = age;
         this.idMovie = idMovie;

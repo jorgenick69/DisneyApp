@@ -2,7 +2,9 @@ package com.AlkemyChallenge.Disney.entity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -62,7 +64,7 @@ public class MovieEntity {
             inverseJoinColumns = @JoinColumn(name = "characterId")
 
     )
-    private List<CharacterEntity> characters_entity = new ArrayList<>();
+    private Set<CharacterEntity> characters_entity = new HashSet<>();
   
 
      private boolean deleted=Boolean.FALSE;

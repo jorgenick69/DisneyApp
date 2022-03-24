@@ -40,7 +40,7 @@ public class CharacterSpecification {
             criteriaBuilder.equal(root.<Integer>get("age"),filterDto.getAge())
             );            
         }
-         if (!CollectionUtils.isEmpty(filterDto.getIdMovie())){
+         if (filterDto.getIdMovie() != null){
                 Join<MovieEntity, CharacterEntity> join = root.join("movies" , JoinType.INNER);
                 Expression<String> idMovie = join.get("id");
                 predicates.add(idMovie.in(filterDto.getIdMovie()));

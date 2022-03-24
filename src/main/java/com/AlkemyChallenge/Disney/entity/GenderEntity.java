@@ -1,6 +1,8 @@
 package com.AlkemyChallenge.Disney.entity;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +32,6 @@ public class GenderEntity {
     private boolean deleted=Boolean.FALSE;
  
    @OneToMany(mappedBy = "gender")
-   private List<MovieEntity>movies;
+   private Set<MovieEntity>movies= new HashSet<>();
     
 }

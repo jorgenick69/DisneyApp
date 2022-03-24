@@ -5,6 +5,7 @@ import com.AlkemyChallenge.Disney.dto.CharacterDTO;
 import com.AlkemyChallenge.Disney.dto.CharacterDTOBasic;
 import com.AlkemyChallenge.Disney.service.CharacterService;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -35,9 +36,9 @@ public class CharacterController {
     public ResponseEntity<List<CharacterDTOBasic>> getAllbyFilter(
     @RequestParam(required = false)String name,
     @RequestParam(required = false)Integer age,
-    @RequestParam(required = false)List<Long> idMovie
+    @RequestParam(required = false)Long idMovie
     ){
-    List<CharacterDTOBasic>CharacterDtoBasicList=characterService.getByFilters(name,age,idMovie);
+    List<CharacterDTOBasic>CharacterDtoBasicList=(List<CharacterDTOBasic>) characterService.getByFilters(name,age,idMovie);
     return ResponseEntity.ok(CharacterDtoBasicList);
     }
     

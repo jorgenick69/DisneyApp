@@ -4,7 +4,9 @@ import com.AlkemyChallenge.Disney.dto.GenderDTO;
 import com.AlkemyChallenge.Disney.entity.GenderEntity;
 import com.AlkemyChallenge.Disney.service.MovieService;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -33,11 +35,11 @@ public class GenderMapper {
     genderDto.setImage(genderEntity.getImage());
     genderDto.setName(genderEntity.getName());
     genderDto.setDeleted(genderEntity.isDeleted());
-    genderDto.setMovies(movieMapper.fullDtoList(genderEntity.getMovies(), true));
+    //genderDto.setMovies(movieMapper.fullDtoList(genderEntity.getMovies());
     return genderDto;
     }
-     public List<GenderDTO> listGendersEntityToDto(List<GenderEntity>listGendersEntity){
-         List<GenderDTO>listGenderDto=new ArrayList<>();
+     public Set<GenderDTO> listGendersEntityToDto(Set<GenderEntity>listGendersEntity){
+         Set<GenderDTO>listGenderDto=new HashSet<>();
          for (GenderEntity g : listGendersEntity) {
              listGenderDto.add(genderEntityToDto(g));
          }

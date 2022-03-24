@@ -4,6 +4,7 @@ import com.AlkemyChallenge.Disney.dto.MovieDTO;
 import com.AlkemyChallenge.Disney.dto.MovieDTOBasic;
 import com.AlkemyChallenge.Disney.service.MovieService;
 import java.util.List;
+import java.util.Set;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,8 +27,8 @@ public class MovieController {
     private MovieService movieService;
 
     @GetMapping
-    public ResponseEntity<List<MovieDTOBasic>> getAll( ) {
-        List<MovieDTOBasic> MovieDTOBasicList = movieService.getAllMovieDtoBasic();
+    public ResponseEntity<Set<MovieDTOBasic>> getAll( ) {
+        Set<MovieDTOBasic> MovieDTOBasicList = movieService.getAllMovieDtoBasic();
         return ResponseEntity.ok().body(MovieDTOBasicList);
     }
 

@@ -3,7 +3,9 @@ package com.AlkemyChallenge.Disney.dto;
 
 import com.AlkemyChallenge.Disney.entity.MovieEntity;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lombok.Data;
 
 @Data
@@ -15,15 +17,15 @@ public class CharacterDTO {
 
     private String name;
 
-    private int age;
+    private Integer age;
 
-    private double weight;
+    private Double weight;
 
     private String history;
 
-    private List<MovieEntity> movies = new ArrayList<>();
+    private Set<MovieEntity> movies = new HashSet<>();
     
-    private List<Long> moviesId = new ArrayList<>();
+    private Set<Long> moviesId = new HashSet<>();
 
     private boolean deleted;
 

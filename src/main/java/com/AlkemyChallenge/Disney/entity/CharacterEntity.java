@@ -2,7 +2,9 @@ package com.AlkemyChallenge.Disney.entity;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,7 +38,7 @@ public class CharacterEntity {
     private String history ;
 
    @ManyToMany(mappedBy = "characters_entity", cascade = CascadeType.ALL)
-    private List<MovieEntity> movies = new ArrayList<>();
+    private Set<MovieEntity> movies = new HashSet<>();
 
     private boolean deleted=Boolean.FALSE;
 

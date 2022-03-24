@@ -3,6 +3,7 @@ package com.AlkemyChallenge.Disney.controller;
 import com.AlkemyChallenge.Disney.dto.GenderDTO;
 import com.AlkemyChallenge.Disney.service.GenderService;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +23,8 @@ public class GenderController {
     private GenderService genderService;
 
     @GetMapping
-    public ResponseEntity<List<GenderDTO>> getAll(){
-    List<GenderDTO>genderDtoList=genderService.getAllGenders();
+    public ResponseEntity<Set<GenderDTO>> getAll(){
+    Set<GenderDTO>genderDtoList=genderService.getAllGenders();
     return ResponseEntity.ok().body(genderDtoList);
     }
     @PostMapping

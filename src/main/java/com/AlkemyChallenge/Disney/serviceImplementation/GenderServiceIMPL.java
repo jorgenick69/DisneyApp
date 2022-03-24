@@ -7,6 +7,7 @@ import com.AlkemyChallenge.Disney.repository.GenderRepository;
 import org.springframework.stereotype.Service;
 import com.AlkemyChallenge.Disney.service.GenderService;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -30,9 +31,9 @@ public class GenderServiceIMPL implements GenderService {
     }
 
     @Override
-    public List<GenderDTO> getAllGenders() {
-        List<GenderEntity>genderEntityList=genderRepository.findAll();
-        List<GenderDTO>genderDtoList=genderMapper.listGendersEntityToDto(genderEntityList);
+    public Set<GenderDTO> getAllGenders() {
+        Set<GenderEntity>genderEntityList=(Set<GenderEntity>) genderRepository.findAll();
+        Set<GenderDTO>genderDtoList=genderMapper.listGendersEntityToDto(genderEntityList);
         return genderDtoList;
     }
 
