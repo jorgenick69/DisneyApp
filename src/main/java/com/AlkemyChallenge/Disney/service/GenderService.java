@@ -10,7 +10,7 @@ public interface GenderService {
 
     GenderDTO save(GenderDTO genderDTO);
 
-    Set<GenderDTO> getAllGenders();
+    List<GenderDTO> getAllGenders();
 
     void delete(Long id);
     

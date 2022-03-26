@@ -3,6 +3,7 @@ package com.AlkemyChallenge.Disney.auth.service;
 import com.AlkemyChallenge.Disney.auth.dto.UserDTO;
 import com.AlkemyChallenge.Disney.auth.entity.UserEntity;
 import com.AlkemyChallenge.Disney.auth.repository.UserRepository;
+import com.AlkemyChallenge.Disney.service.EmailService;
 import java.util.Collection;
 import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,10 @@ public class UserDetailsCustomService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-  /*  @Autowired
-   
-    private EmailService emailService;*/
+    @Autowired
+
+    private EmailService emailService;
+
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         UserEntity userEntity = userRepository.findByUsername(userName);
@@ -35,7 +37,9 @@ public class UserDetailsCustomService implements UserDetailsService {
         userEntity.setUsername(userDTO.getUsername());
         userEntity.setPassword(userDTO.getPassword());
         userEntity = userRepository.save(userEntity);
-
+        if (userEntity != null) {
+            emailService.sendWelcomeEmailTo(userEntity.getUsername());
+        }
         return userEntity != null;
 
     }

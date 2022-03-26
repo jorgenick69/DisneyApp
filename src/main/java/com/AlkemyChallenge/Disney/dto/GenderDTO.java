@@ -1,6 +1,9 @@
 package com.AlkemyChallenge.Disney.dto;
 
 
+import com.AlkemyChallenge.Disney.dto.MovieDTO;
+import com.AlkemyChallenge.Disney.entity.MovieEntity;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,8 +20,8 @@ public class GenderDTO {
 
     private boolean deleted;
 
-    private Set<MovieDTO> movies= new HashSet<>();
+    private List<MovieEntity> movies= new ArrayList<>();
 
-    private Set<Long> moviesId= new HashSet<>();
+    private List<Long> moviesId= new ArrayList<>();
 
 }

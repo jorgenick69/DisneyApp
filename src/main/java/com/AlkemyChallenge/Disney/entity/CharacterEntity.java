@@ -38,7 +38,7 @@ public class CharacterEntity {
     private String history ;
 
    @ManyToMany(mappedBy = "characters_entity", cascade = CascadeType.ALL)
-    private Set<MovieEntity> movies = new HashSet<>();
+    private List<MovieEntity> movies = new ArrayList<>();
 
     private boolean deleted=Boolean.FALSE;
 

@@ -23,9 +23,9 @@ public class CharacterDTO {
 
     private String history;
 
-    private Set<MovieEntity> movies = new HashSet<>();
+    private List<MovieEntity> movies = new ArrayList<>();
     
-    private Set<Long> moviesId = new HashSet<>();
+    private List<Long> moviesId = new ArrayList<>();
 
     private boolean deleted;
 

@@ -10,13 +10,15 @@ public interface MovieService {
 
     MovieDTO save(MovieDTO movieDTO);
 
-    Set<MovieDTO> getAllMovieDtoFull();
+    List<MovieDTO> getAllMovieDtoFull();
 
-    Set<MovieDTOBasic> getAllMovieDtoBasic();
+    List<MovieDTOBasic> getAllMovieDtoBasic();
 
     void delete(Long id);
 
     MovieEntity getEntityById(Long id);
 
-    Set<MovieEntity> getAllEntityById(Set<Long> ids);
+    List<MovieEntity> getAllEntityById(List<Long> ids);
+
+    List<MovieDTOBasic> getByFilters(String title, Long genderId, String order);
 }

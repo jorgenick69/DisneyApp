@@ -1,3 +1,4 @@
+
 package com.AlkemyChallenge.Disney.controller;
 
 import com.AlkemyChallenge.Disney.dto.GenderDTO;
@@ -16,26 +17,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+
 @RestController
 @RequestMapping("/genders")
 public class GenderController {
+
     @Autowired
     private GenderService genderService;
 
     @GetMapping
-    public ResponseEntity<Set<GenderDTO>> getAll(){
-    Set<GenderDTO>genderDtoList=genderService.getAllGenders();
-    return ResponseEntity.ok().body(genderDtoList);
+    public ResponseEntity<List<GenderDTO>> getAll() {
+        List<GenderDTO> genderDtoList = genderService.getAllGenders();
+        return ResponseEntity.ok().body(genderDtoList);
     }
+
     @PostMapping
-    public ResponseEntity<GenderDTO>save(@RequestBody GenderDTO gender){
-        GenderDTO genderSave=genderService.save(gender);
-    return ResponseEntity.status(HttpStatus.CREATED).body(genderSave);
+    public ResponseEntity<GenderDTO> save(@RequestBody GenderDTO gender) {
+        GenderDTO genderSave = genderService.save(gender);
+        return ResponseEntity.status(HttpStatus.CREATED).body(genderSave);
     }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void>delete(@PathVariable Long id){
-    genderService.delete(id);
-    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        genderService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-    
+
 }

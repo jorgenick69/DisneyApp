@@ -38,8 +38,8 @@ public class GenderMapper {
     //genderDto.setMovies(movieMapper.fullDtoList(genderEntity.getMovies());
     return genderDto;
     }
-     public Set<GenderDTO> listGendersEntityToDto(Set<GenderEntity>listGendersEntity){
-         Set<GenderDTO>listGenderDto=new HashSet<>();
+     public List<GenderDTO> listGendersEntityToDto(List<GenderEntity>listGendersEntity){
+         List<GenderDTO>listGenderDto=new ArrayList<>();
          for (GenderEntity g : listGendersEntity) {
              listGenderDto.add(genderEntityToDto(g));
          }

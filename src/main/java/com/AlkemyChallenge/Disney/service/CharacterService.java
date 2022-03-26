@@ -9,14 +9,14 @@ import java.util.Set;
 public interface CharacterService {
    CharacterDTO save(CharacterDTO characterDTO);
    
-    Set<CharacterDTO> getAllCharacterDtoFull();
+    List<CharacterDTO> getAllCharacterDtoFull();
     List<CharacterDTOBasic> getAllCharacterDtoBasic();
 
     void delete(Long id);
     
     CharacterEntity getEntityById(Long id);
-    
-    Set<CharacterEntity> getAllEntityById(Set<Long> ids);
+    CharacterDTO getCharacterDTOById(Long id);
+    List<CharacterEntity> getAllEntityById(List<Long> ids);
 
    List<CharacterDTOBasic> getByFilters(String name, Integer age, Long idMovie);
 }

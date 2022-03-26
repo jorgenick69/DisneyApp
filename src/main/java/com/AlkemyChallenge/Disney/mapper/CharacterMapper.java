@@ -45,6 +45,7 @@ public class CharacterMapper {
             characterEntity.setWeight(characterDTO.getWeight());
         }
         if (characterDTO.getMoviesId() != null) {
+            characterEntity.setMovies(null);
             characterEntity.setMovies(movieService.getAllEntityById(characterDTO.getMoviesId()));
         }
 
@@ -63,8 +64,8 @@ public class CharacterMapper {
         for (MovieEntity m : characterEntity.getMovies()) {
             m.setCharacters_entity(null);
         }
-         Set<MovieEntity> mov =characterEntity.getMovies();
-        characterDTO.setMovies(mov);
+        
+        characterDTO.setMovies(characterEntity.getMovies());
 
         return characterDTO;
     }
@@ -78,16 +79,16 @@ public class CharacterMapper {
         return characterDTOBasic;
     }
 
-    public Set<CharacterEntity> listFullCharacterEntity(Set<CharacterDTO> listCharacterDTO) {
-        Set<CharacterEntity> listCharacterEntity = new HashSet<>();
+    public List<CharacterEntity> listFullCharacterEntity(Set<CharacterDTO> listCharacterDTO) {
+        List<CharacterEntity> listCharacterEntity = new ArrayList<>();
         for (CharacterDTO c : listCharacterDTO) {
             listCharacterEntity.add(FullcharacterDtoToEntity(c));
         }
         return listCharacterEntity;
     }
 
-    public Set<CharacterDTO> listFullCharacterDto(Set<CharacterEntity> listCharacterEntity) {
-        Set<CharacterDTO> listCharacterDTO = new HashSet<>();
+    public List<CharacterDTO> listFullCharacterDto(List<CharacterEntity> listCharacterEntity) {
+        List<CharacterDTO> listCharacterDTO = new ArrayList<>();
         for (CharacterEntity c : listCharacterEntity) {
             listCharacterDTO.add(FullcharacterEntityToDto(c));
         }

@@ -53,10 +53,7 @@ public class MovieEntity {
  //  private Long genderId;
 
    @ManyToMany(
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            }
+            cascade = CascadeType.ALL
     )
     @JoinTable(
             name = "charactersMovies",
@@ -64,7 +61,7 @@ public class MovieEntity {
             inverseJoinColumns = @JoinColumn(name = "characterId")
 
     )
-    private Set<CharacterEntity> characters_entity = new HashSet<>();
+    private List<CharacterEntity> characters_entity = new ArrayList<>();
   
 
      private boolean deleted=Boolean.FALSE;

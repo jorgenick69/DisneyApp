@@ -31,9 +31,9 @@ public class GenderServiceIMPL implements GenderService {
     }
 
     @Override
-    public Set<GenderDTO> getAllGenders() {
-        Set<GenderEntity>genderEntityList=(Set<GenderEntity>) genderRepository.findAll();
-        Set<GenderDTO>genderDtoList=genderMapper.listGendersEntityToDto(genderEntityList);
+    public List<GenderDTO> getAllGenders() {
+        List<GenderEntity>genderEntityList=(List<GenderEntity>) genderRepository.findAll();
+        List<GenderDTO>genderDtoList=genderMapper.listGendersEntityToDto(genderEntityList);
         return genderDtoList;
     }
 

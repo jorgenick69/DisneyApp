@@ -25,12 +25,13 @@ public class CharacterController {
     @Autowired
     private CharacterService characterService;
    
-    @GetMapping("/list")
-    public ResponseEntity<List<CharacterDTOBasic>> getAll(){
-    List<CharacterDTOBasic>CharacterDtoBasicList=characterService.getAllCharacterDtoBasic();
-    return ResponseEntity.ok().body(CharacterDtoBasicList);
-    }
+
+    @GetMapping("/{id}")
+    public CharacterDTO getById(@PathVariable Long id){
     
+    CharacterDTO characterDTO=characterService.getCharacterDTOById(id);
+    return characterDTO;
+    }
     
     @GetMapping
     public ResponseEntity<List<CharacterDTOBasic>> getAllbyFilter(
@@ -38,7 +39,7 @@ public class CharacterController {
     @RequestParam(required = false)Integer age,
     @RequestParam(required = false)Long idMovie
     ){
-    List<CharacterDTOBasic>CharacterDtoBasicList=(List<CharacterDTOBasic>) characterService.getByFilters(name,age,idMovie);
+    List<CharacterDTOBasic>CharacterDtoBasicList=characterService.getByFilters(name,age,idMovie);
     return ResponseEntity.ok(CharacterDtoBasicList);
     }
     

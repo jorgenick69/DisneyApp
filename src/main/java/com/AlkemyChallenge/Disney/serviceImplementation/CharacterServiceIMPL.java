@@ -43,9 +43,9 @@ public class CharacterServiceIMPL implements CharacterService {
     }
 
     @Override
-    public Set<CharacterDTO> getAllCharacterDtoFull() {
-        Set<CharacterEntity> characterEntityList = (Set<CharacterEntity>) characterRepository.findAll();
-        Set<CharacterDTO> characterDtoList = characterMapper.listFullCharacterDto(characterEntityList);
+    public List<CharacterDTO> getAllCharacterDtoFull() {
+        List<CharacterEntity> characterEntityList = characterRepository.findAll();
+        List<CharacterDTO> characterDtoList = characterMapper.listFullCharacterDto(characterEntityList);
         return characterDtoList;
 
     }
@@ -59,12 +59,20 @@ public class CharacterServiceIMPL implements CharacterService {
 
     @Override
     public CharacterEntity getEntityById(Long id) {
-        return characterRepository.findById(id).orElse(null);
+        CharacterEntity characterEntity= characterRepository.findById(id).orElse(null);
+        return characterEntity;
+    }
+     @Override
+    public CharacterDTO getCharacterDTOById(Long id) {
+     CharacterEntity characterEntity=getEntityById(id);
+     CharacterDTO characterDTO=characterMapper.FullcharacterEntityToDto(characterEntity);
+     return characterDTO;
     }
 
+
     @Override
-    public Set<CharacterEntity> getAllEntityById(Set<Long> ids) {
-        Set<CharacterEntity> listCharacterEntity = new HashSet<>();
+    public List<CharacterEntity> getAllEntityById(List<Long> ids) {
+        List<CharacterEntity> listCharacterEntity = new ArrayList<>();
         for (Long id : ids) {
             listCharacterEntity.add(getEntityById(id));
         }
@@ -81,4 +89,5 @@ public class CharacterServiceIMPL implements CharacterService {
         return characterDTOresult;
     }
 
+   
 }

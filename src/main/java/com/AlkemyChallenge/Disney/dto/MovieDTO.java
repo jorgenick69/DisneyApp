@@ -21,7 +21,7 @@ public class MovieDTO {
 
     private String title;
 
-    private LocalDate creationDate;
+    private String creationDate;
 
     @Range(min = 1, max = 5, message = "la evaluacion debe ser de 1 a 5")
     private Integer rankings;
@@ -30,9 +30,9 @@ public class MovieDTO {
 
     private Long genderId;
 
-    private Set<CharacterEntity> characters = new HashSet<>();
+    private List<CharacterEntity> characters = new ArrayList<>();
 
-    private Set<Long> charactersId = new HashSet<>();
+    private List<Long> charactersId = new ArrayList<>();
 
     private boolean deleted;
 }

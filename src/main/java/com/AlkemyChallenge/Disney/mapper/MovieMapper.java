@@ -5,6 +5,8 @@ import com.AlkemyChallenge.Disney.dto.MovieDTOBasic;
 import com.AlkemyChallenge.Disney.entity.CharacterEntity;
 import com.AlkemyChallenge.Disney.entity.MovieEntity;
 import com.AlkemyChallenge.Disney.service.CharacterService;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -26,7 +28,7 @@ public class MovieMapper {
             movieEntity.setId(movieDTO.getId());
         }
         if (movieDTO.getCreationDate() != null) {
-            movieEntity.setCreationDate(movieDTO.getCreationDate());
+            movieEntity.setCreationDate(stringToLocalDate(movieDTO.getCreationDate()));
         }
         if (movieDTO.getGender() != null) {
             movieEntity.setGender(movieDTO.getGender());
@@ -42,17 +44,23 @@ public class MovieMapper {
         }
 
         if (movieDTO.getCharactersId() != null) {
+            movieEntity.setCharacters_entity(null);
             movieEntity.setCharacters_entity(characterService.getAllEntityById(movieDTO.getCharactersId()));
         }
 
         return movieEntity;
+    }
+    public LocalDate stringToLocalDate(String creationDate){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(creationDate,dateTimeFormatter);
+        return date;
     }
 
     public MovieDTO fullEntityToFullDto(MovieEntity movieEntity) {
 
         MovieDTO movieDTO = new MovieDTO();
         movieDTO.setId(movieEntity.getId());
-        movieDTO.setCreationDate(movieEntity.getCreationDate());
+        movieDTO.setCreationDate(movieEntity.getCreationDate().toString());
         movieDTO.setGender(movieEntity.getGender());
         movieDTO.setRankings(movieEntity.getRankings());
         movieDTO.setTitle(movieEntity.getTitle());
@@ -74,24 +82,24 @@ public class MovieMapper {
         return movieDTOBasic;
     }
 
-    public Set<MovieEntity> fullEntityList(Set<MovieDTO> listMovieDto) {
-        Set<MovieEntity> listMovieEntity = new HashSet<>();
+    public List<MovieEntity> fullEntityList(List<MovieDTO> listMovieDto) {
+        List<MovieEntity> listMovieEntity = new ArrayList<>();
         for (MovieDTO m : listMovieDto) {
             listMovieEntity.add(fullDtoToFullEntity(m));
         }
         return listMovieEntity;
     }
 
-    public Set<MovieDTO> fullDtoList(Set<MovieEntity> listMovieEntity) {
-        Set<MovieDTO> listMovieDTO = new HashSet<>();
+    public List<MovieDTO> fullDtoList(List<MovieEntity> listMovieEntity) {
+        List<MovieDTO> listMovieDTO = new ArrayList<>();
         for (MovieEntity m : listMovieEntity) {
             listMovieDTO.add(fullEntityToFullDto(m));
         }
         return listMovieDTO;
     }
 
-    public Set<MovieDTOBasic> basicDtoList(Set<MovieEntity> listMovieEntity) {
-        Set<MovieDTOBasic> listMovieDTOBasicbasic = new HashSet<>();
+    public List<MovieDTOBasic> basicDtoList(List<MovieEntity> listMovieEntity) {
+        List<MovieDTOBasic> listMovieDTOBasicbasic = new ArrayList<>();
         for (MovieEntity m : listMovieEntity) {
             listMovieDTOBasicbasic.add(entityToDtoBasic(m));
         }

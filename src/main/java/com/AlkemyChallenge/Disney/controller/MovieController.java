@@ -26,12 +26,21 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping
-    public ResponseEntity<Set<MovieDTOBasic>> getAll( ) {
-        Set<MovieDTOBasic> MovieDTOBasicList = movieService.getAllMovieDtoBasic();
-        return ResponseEntity.ok().body(MovieDTOBasicList);
+//    @GetMapping
+//    public ResponseEntity<List<MovieDTOBasic>> getAll( ) {
+//        List<MovieDTOBasic> MovieDTOBasicList = movieService.getAllMovieDtoBasic();
+//        return ResponseEntity.ok().body(MovieDTOBasicList);
+//    }
+  @GetMapping
+    public ResponseEntity<List<MovieDTOBasic>> getAllbyFilter(
+    @RequestParam(required = false)String title,
+    @RequestParam(required = false)Long genderId,
+    @RequestParam(required = false, defaultValue = "ASC")String order
+    ){
+    List<MovieDTOBasic>movieDTOBasic=movieService.getByFilters(title, genderId, order);
+    return ResponseEntity.ok(movieDTOBasic);
     }
-
+    
     @PostMapping
     public ResponseEntity<MovieDTO> save(@Valid @RequestBody MovieDTO movieDTO) {
         MovieDTO movieDTOSave = movieService.save(movieDTO);
